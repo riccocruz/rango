@@ -5,6 +5,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango_with_django_project.setti
 django.setup()
 from rango.models import Category, Page
 
+
 def populate():
     """First, we will create lists of dictionaries containing the pages we want to add into each category.
     Then we will create a dictionary of dictionaries for our categories.  This allows us to
@@ -44,7 +45,13 @@ def populate():
 
     cats = {'Python': {'pages': python_pages, 'views': 128, 'likes': 64},
             'Django': {'pages': django_pages, 'views': 64, 'likes': 32},
-            'Other Frameworks': {'pages': other_pages, 'views': 32, 'likes': 16}
+            'Other Frameworks': {'pages': other_pages, 'views': 32, 'likes': 16},
+            'Pascal': {'pages': ([]), 'views': 0, 'likes': 0},
+            'Perl': {'pages': ([]), 'views': 0, 'likes': 0},
+            'PHP': {'pages': ([]), 'views': 0, 'likes': 0},
+            'Prolog': {'pages': ([]), 'views': 0, 'likes': 0},
+            'Postscript': {'pages': ([]), 'views': 0, 'likes': 0},
+            'Programming': {'pages': ([]), 'views': 0, 'likes': 0}
             }
     # If you want to add more categories or pages, add them to the dictionaries above
 
