@@ -22,21 +22,15 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 key = None
-try:
-    with open('secret.key', 'r') as f:
-        key = f.readline().strip()
-except:
-    try:
-        with open('../secret.key') as f:
-            key = f.readline().strip()
-    except:
-        raise IOError('secret.key file not found')
+with open('secret.key', 'r') as f:
+    key = f.read().strip()
+
 SECRET_KEY = key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['ricco.pythonanywhere.com']
+ALLOWED_HOSTS = ['ricco.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
