@@ -26,9 +26,8 @@ try:
     with open('secret.key', 'r') as f:
         key = f.read().strip()
 except:
-    try:
-        with open('../secret.key', 'r') as f:
-            key = f.read().strip()
+    with open('../secret.key', 'r') as f:
+        key = f.read().strip()
 
 SECRET_KEY = key
 
