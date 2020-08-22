@@ -1,41 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-
 {% extends 'rango/base.html' %}
 {% load staticfiles %}
-
 
 {% block title_block %}
     About Rango
 {% endblock %}
 
 {% block body_block %}
-
-    <div class="jumbotron p-4">
-        <div class="container">
-            <h1 class="jumbotron-heading">Rango says...</h1>
-            <div>
-                here is the about page. <br/>
-                <strong>{{ boldmessage }}</strong> <br/>
-                <p>Visits: {{ visits }}</p>
-            </div>
-        </div>
+<div class="jumbotron p-4">
+    <div class="container">
+        <h1 class="jumbotron-heading">Rango says...</h1>
     </div>
+</div>
+<div>
+    here is the about page. <br />
+    This tutorial has been put together by David Maxwell.<br />
+    <p>Visits: {{ visits }}</p>
+</div>
 
-    <button class="btn btn-primary"
-            onclick="alert('You clicked the button using inline JavaScript.');">
-        Click me - I run on vanilla JavaScript!
-    </button>
+<button class="btn btn-primary" onclick="alert('You clicked the button using inline JavaScript.');">
+Click me - I run on vanilla JavaScript!
+</button>
 
-    <button class="btn btn-primary" id="about-btn">Click me - I'm using JQuery!</button>
-    <div id="msg">Hello! I'm a further example for JQuery testing.</div>
+<button class="btn btn-primary" id="about-btn">
+    Click me - I'm using JQuery!
+</button>
 
-    <br/>
-    <br/>
-    <strong class="ouch">This is for the ouchie pouchie.</strong>
-    <p>This is some text for the jQuery example.</p>
-{#    <div>#}
-{#        <img src="{% static 'images/rango.jpg' %}" width="300" height="400" alt="Picture of Rango"/>#}
-{#        <img src="{{ MEDIA_URL }}cat.jpg" alt="Picture of a Cat."/>#}
-{#    </div>#}
+<p>This is some text for the JQuery example.</p>
+
+<div id="msg">Hello! I'm a further example for JQuery testing.</div>
+
+<br />
+
+<img src="{% static 'images/rango.jpg' %}" alt="Picture of Rango" />
+<img src="{{ MEDIA_URL }}cat.jpg" alt="Picture of a Cat" />
 {% endblock %}

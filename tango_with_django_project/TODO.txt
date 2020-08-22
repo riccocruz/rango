@@ -1,0 +1,3 @@
+TODO:
+1. Edit models so that when you like a category, it stays liked and maybe subscribed
+2. Add category moved to side bar

@@ -17,28 +17,30 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# This is modified for the deployment chapter of Tango with Django.
+# We don't care about this secret key; but you should! Keep your keys safe.
 key = None
-try:
-    with open('secret.key', 'r') as f:
-        key = f.read().strip()
-except:
-    with open('../secret.key', 'r') as f:
-        key = f.read().strip()
-
+with open('secret.key', 'r') as f:
+    key = f.read().strip()
+    
 SECRET_KEY = key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['ricco.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = []
 
+REGISTRATION_OPEN = True
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = 'rango:index'
+LOGIN_URL = 'auth_login'
 
 # Application definition
-LOGIN_URL = 'rango:login'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -66,7 +68,7 @@ ROOT_URLCONF = 'tango_with_django_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR,],
+        'DIRS': [TEMPLATE_DIR, ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -103,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-        'OPTIONS': {'min_length': 6},
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -131,25 +132,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATICFILES_DIRS = [STATIC_DIR, ]
 STATIC_URL = '/static/'
-
-# Media files
+STATICFILES_DIRS = [STATIC_DIR, ]
 
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
-
-# Registration
-
-# If True, users can register.
-REGISTRATION_OPEN = True
-
-# If True, the user will be automatically logged in after registering.
-REGISTRATION_AUTO_LOGIN = True
-
-# The URL that Django redirects users to after logging in.
-LOGIN_REDIRECT_URL = 'rango:index'
-
-# The page users are directed to if they are not logged in.
-# This was set in a previous chapter. The registration package uses this, too.
-LOGIN_URL = 'auth_login'

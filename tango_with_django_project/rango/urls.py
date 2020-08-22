@@ -1,13 +1,11 @@
-from django.contrib import admin
 from django.urls import path
-from django.urls import include
 from rango import views
 
 app_name = 'rango'
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
-    path('about/', views.AboutView.as_view(), name="about"),
+    path('about/', views.AboutView.as_view(), name='about'),
     path('category/<slug:category_name_slug>/', views.ShowCategoryView.as_view(), name='show_category'),
     path('add_category/', views.AddCategoryView.as_view(), name='add_category'),
     path('category/<slug:category_name_slug>/add_page/', views.AddPageView.as_view(), name='add_page'),
