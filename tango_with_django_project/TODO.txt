@@ -1,4 +1,12 @@
-TODO:
-1. Edit models so that when you like a category, it stays liked and maybe subscribed
-2. Add category moved to side bar
-3. Include live chat for each category?
+TODO small things:
+1. DONE: Add Change password to profile
+2. DONE: Add category moved to side bar
+3. DONE: Add Scroll bar on sidebar
+4. Make profile pic go on right side, make it look prettier
+5. Collapse the sidebar
+
+TODO big things:
+1. Edit models so that when you like a category, it stays liked/subscribed
+2. Include live chat for each category?
+3. Edit models to have website, comment, etc. on Profile page
+    3a. display those on Profile page

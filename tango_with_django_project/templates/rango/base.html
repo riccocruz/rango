@@ -6,9 +6,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="author" content="Riccoveigh Cruz">
     <meta name="generator" content="Jekyll v3.8.5">
     <link rel="icon" href="{% static 'images/favicon.ico' %}">
+
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+
     <title>
         Rango - {% block title_block %}How to Tango with Django!{% endblock %}
     </title>
@@ -23,22 +26,19 @@
 
 <body>
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark p-0">
+    <nav class="navbar navbar-expand navbar-dark flex-column flex-md-row bg-dark p-0">
         <a class="navbar-brand p-2" href="{% url 'rango:index' %}">Rango</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        {#        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"#}
+        {#                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">#}
+        {#            <span class="navbar-toggler-icon"></span>#}
+        {#        </button>#}
 
-        <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"><a class="nav-link" href="{% url 'rango:index' %}">Home</a></li>
                 <li class="nav-item "><a class="nav-link" href="{% url 'rango:about' %}">About</a></li>
                 {% if user.is_authenticated %}
                     <li class="nav-item "><a class="nav-link" href="{% url 'rango:restricted' %}">Restricted</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'auth_logout' %}?next=/rango/">Logout</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'auth_password_change' %}">Change Password</a>
-                    </li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'rango:profile' user.username %}">Profile</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'rango:list_profiles' %}">List Profiles</a>
@@ -49,26 +49,43 @@
                     <li class="nav-item "><a class="nav-link" href="{% url 'auth_login' %}">Login</a></li>
                 {% endif %}
             </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link d-flex justify-content-right"
+                                            href="{% url 'auth_logout' %}?next=/rango/">Logout</a></li>
+
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'registration_register' %}">Register Here</a>
+                    </li>
+                    <li class="nav-item "><a class="nav-link" href="{% url 'auth_login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+
         </div>
     </nav>
 </header>
 
 <div class="container-fluid">
     <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-            <div class="w-75 ml-3">
-                <input type="search" id="search-input" class="form-control ds-input" placeholder="Search..."/>
+
+        <div class="collapse col-md-2 d-none d-md-block bd-sidebar" id="padding-none-override sidebarCollapse">
+            <div class="bd-search d-flex align-items-center">
+                <input type="search" id="search-input" class="form-control ds-input"
+                       placeholder="Search Category"/>
             </div>
+
             <div class="d-flex justify-content-center">
                 <a class="btn btn-primary text-center mt-3" href="{% url 'rango:add_category' %}">+ Add Category</a>
             </div>
 
-            <div class="sidebar-sticky" id="categories-listing">
-                {% block sidebar_block %}
-                    {% get_category_list category %}
-                {% endblock %}
+            <div class="categories-listing-container">
+                <nav id="categories-listing">
+                    {% block sidebar_block %}
+                        {% get_category_list category %}
+                    {% endblock %}
+                </nav>
             </div>
-        </nav>
+        </div>
 
         <main role="main" class="col-md-9  ml-sm-auto col-lg-10 px-4">
             {% block body_block %}{% endblock %}
@@ -81,6 +98,7 @@
         </main>
     </div>
 </div>
+
 
 <!-- Bootstrap core JavaScript -->
 <!-- Placed at the end of the document so the pages load faster -->

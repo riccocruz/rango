@@ -6,35 +6,45 @@
 {% endblock %}
 
 {% block body_block %}
-<div class="jumbotron p-4">
-    <div class="container">
-        <h1 class="jumbotron-heading">{{ selected_user.username }}'s Profile</h1>
-    </div>
-</div>
+    <div class="jumbotron p-4">
+        <div class="container">
+            <div class="row">
+                {% if user_profile.picture %}
+                    <div class="profile-section float-left">
+                        <img src="{{ MEDIA_URL }}{{ user_profile.picture }}"
+                             alt="{{ selected_user.username }}'s profile image"
+                                {#                         height="50px" width="75px"#}
+                             class="rounded img-fluid profile-img float-left"/>
+                    </div>
 
-<div class="container">
-    <div class="row">
-        {% if user_profile.picture %}
-        <img src="{{ MEDIA_URL }}{{ user_profile.picture }}" width="300" height="300" alt="{{ selected_user.username }}'s profile image" />
-        {% else %}
-        <img src="https://lorempixel.com/300/300/people/" width="300" height="300" alt="Placeholder image" />
-        {% endif %}
-        <br />
-        <div>
-            {% if selected_user == user %}
-            <form method="post" action="." enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-
-                <input type="submit" value="Update" />
-            </form>
-            {% else %}
-            <p>
-                <strong>Website: </strong>
-                <a href="{{ user_profile.website }}">{{ user_profile.website }}</a>
-            </p>
-            {% endif %}
+                {% else %}
+                    {#                <img src="https://lorempixel.com/300/300/people/" width="300" height="300" alt="Placeholder image"/>#}
+                {% endif %}
+                {#            <br />#}
+                <h1 class="jumbotron-heading float-right">{{ selected_user.username }}</h1>
+            </div>
         </div>
     </div>
-</div>
+
+    <div class="container">
+        <div class="row">
+            <div>
+                {% if selected_user == user %}
+                    <form method="post" action="." enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+
+                        <input type="submit" value="Update"/>
+                    </form>
+                {% else %}
+                    <p>
+                        <strong>Website: </strong>
+                        <a href="{{ user_profile.website }}">{{ user_profile.website }}</a>
+                    </p>
+                {% endif %}
+            </div>
+            <div class="nav-item"><a class="nav-link" href="{% url 'auth_password_change' %}">Change Password</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
