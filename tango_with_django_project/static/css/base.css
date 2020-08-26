@@ -15,7 +15,7 @@
 }
 
 .categories-listing-container {
-    max-height: calc(100vh - 9.5rem);
+    max-height: calc(100vh - 11rem);
     /*max-height: 60%;*/
     position: sticky;
     top: 0;
