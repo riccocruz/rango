@@ -1,27 +1,35 @@
 {% extends 'rango/base.html' %}
 {% load staticfiles %}
 
+
+
 {% block title_block %}
     Profile for {{ selected_user.username }}
 {% endblock %}
 
 {% block body_block %}
-    <div class="jumbotron p-4">
+    <div class="jumbotron p-2">
         <div class="container">
             <div class="row">
                 {% if user_profile.picture %}
-                    <div class="profile-section float-left">
+                    <div class="col-4 p-4">
                         <img src="{{ MEDIA_URL }}{{ user_profile.picture }}"
                              alt="{{ selected_user.username }}'s profile image"
-                                {#                         height="50px" width="75px"#}
-                             class="rounded img-fluid profile-img float-left"/>
+                             class="rounded img-fluid profile-img"/>
                     </div>
 
                 {% else %}
-                    {#                <img src="https://lorempixel.com/300/300/people/" width="300" height="300" alt="Placeholder image"/>#}
+                    <img src="https://lorempixel.com/300/300/people/" width="300" height="300" alt="Placeholder image"/>
                 {% endif %}
-                {#            <br />#}
-                <h1 class="jumbotron-heading float-right">{{ selected_user.username }}</h1>
+                <div class="col-8 jumbotron p-1">
+                    <h1 class="display-4">{{ selected_user.username }}</h1>
+                    <hr class="my-4">
+                    <p class="lead">
+                        <span data-feather="link"></span> {{ user_profile.website }}
+                    </p>
+
+                </div>
+
             </div>
         </div>
     </div>

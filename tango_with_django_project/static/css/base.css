@@ -7,17 +7,11 @@
     max-height: 200px;
 }
 
-.profile-section {
-    /*width: 90%;*/
-    /*!*height: 30%;*!*/
-    /*max-height: 30%;*/
-    /*max-height: 200px;*/
-}
-
 
 .categories-sidebar {
     max-height: calc(100vh - 7rem);
 }
+
 
 .categories-listing-container {
     /*max-height: 60%;*/
