@@ -1,6 +1,7 @@
 import json
 import requests
 
+
 def read_bing_key():
     # Reads the secret key. DM.
     bing_api_key = None
@@ -14,11 +15,12 @@ def read_bing_key():
                 bing_api_key = f.readline().strip()
         except:
             raise IOError('bing.key file not found')
-    
+
     if not bing_api_key:
         raise KeyError('Bing key not found')
-    
+
     return bing_api_key
+
 
 def run_query(search_terms):
     bing_key = read_bing_key()
@@ -33,8 +35,9 @@ def run_query(search_terms):
     results = []
     for result in search_results['webPages']['value']:
         results.append({'title': result['name'], 'link': result['url'], 'summary': result['snippet']})
-    
+
     return results
+
 
 def main():
     # Alternative solution for terminal-based interaction. DM.
@@ -46,6 +49,7 @@ def main():
         print(result['link'])
         print(result['summary'])
         print('===============')
+
 
 if __name__ == '__main__':
     main()

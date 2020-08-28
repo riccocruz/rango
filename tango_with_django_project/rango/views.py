@@ -83,19 +83,20 @@ class AddCategoryView(View):
     @method_decorator(login_required)
     def get(self, request):
         form = CategoryForm()
-        return render(request, 'rango/add_category.html', {'form': form})
+        category_list = Category.objects.order_by('-likes')
+        return render(request, 'rango/add_category.html', {'form': form, 'categories': category_list})
 
     @method_decorator(login_required)
     def post(self, request):
         form = CategoryForm(request.POST)
-
+        category_list = Category.objects.order_by('-likes')
         if form.is_valid():
             form.save(commit=True)
             return redirect(reverse('rango:index'))
         else:
             print(form.errors)
 
-        return render(request, 'rango/add_category.html', {'form': form})
+        return render(request, 'rango/add_category.html', {'form': form, 'categories': category_list})
 
 
 class AddPageView(View):

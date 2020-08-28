@@ -27,22 +27,43 @@
 <body>
 <header>
 
-    <nav class="navbar navbar-expand navbar-dark flex-column flex-md-row bg-dark p-0">
-        <a class="navbar-brand p-2" href="{% url 'rango:index' %}">Rango</a>
-        <div class="navbar-collapse" id="navbarCollapse">
+    <nav class="navbar navbar-expand-md navbar-dark flex-md-row bg-dark p-2">
+
+        <div class="col-10 col-md-2 d-flex justify-content-center">
+            <button class="btn btn-light text-center" type="button" data-toggle="collapse"
+                    data-target="#collapseSideBar"
+                    aria-expanded="false" aria-controls="collapseSideBar">
+                Show Categories
+            </button>
+            {#            <a class="btn btn-primary text-center mt-3" href="{% url 'rango:add_category' %}">+ Add Category</a>#}
+        </div>
+
+        {#        <div class="col-8 col-md-10">#}
+        {#            <a class="p-2" href="{% url 'rango:index' %}">Rango</a>#}
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link" href="{% url 'rango:index' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'rango:index' %}">Rango</a></li>
                 <li class="nav-item "><a class="nav-link" href="{% url 'rango:about' %}">About</a></li>
                 {% if user.is_authenticated %}
-                    <li class="nav-item "><a class="nav-link" href="{% url 'rango:restricted' %}">Restricted</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'rango:profile' user.username %}">Profile</a>
+                    <li class="nav-item "><a class="nav-link" href="{% url 'rango:restricted' %}">Restricted</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'rango:list_profiles' %}">List Profiles</a>
+                    <li class="nav-item"><a class="nav-link"
+                                            href="{% url 'rango:profile' user.username %}">Profile</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'rango:add_category' %}">Add Category</a>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'rango:list_profiles' %}">List
+                        Profiles</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'rango:add_category' %}">Categories</a>
                     </li>
                 {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'registration_register' %}">Register Here</a>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'registration_register' %}">Register
+                        Here</a>
                     </li>
                     <li class="nav-item "><a class="nav-link" href="{% url 'auth_login' %}">Login</a></li>
                 {% endif %}
@@ -53,38 +74,39 @@
                                             href="{% url 'auth_logout' %}?next=/rango/">Logout</a></li>
 
                 {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'registration_register' %}">Register Here</a>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'registration_register' %}">Register
+                        Here</a>
                     </li>
                     <li class="nav-item "><a class="nav-link" href="{% url 'auth_login' %}">Login</a></li>
                 {% endif %}
             </ul>
         </div>
+        </div>
     </nav>
 </header>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2 d-none d-md-block bd-sidebar" id="padding-none-override">
-            <div class="bd-search d-flex align-items-center">
-                <input type="search" id="search-input" class="form-control ds-input"
-                       placeholder="Search Category"/>
-            </div>
+    <div class="row" id="">
+        <div class="col-md-2 d-md-block bd-sidebar" id="padding-none-override">
 
-            <div class="d-flex justify-content-center">
-                <a class="btn btn-primary text-center mt-3" href="{% url 'rango:add_category' %}">+ Add Category</a>
-            </div>
+            <div class="collapse" id="collapseSideBar">
+                <div class="bd-search d-flex align-items-center">
+                    <input type="search" id="search-input" class="form-control ds-input"
+                           placeholder="Search Category"/>
+                </div>
 
-            <div class="categories-listing-container">
-                <nav id="categories-listing">
-                    {% block sidebar_block %}
-                        {% get_category_list category %}
-                    {% endblock %}
-                </nav>
+                <div class="collapse categories-listing-container categories-sidebar" id="collapseSideBar">
+                    <nav id="categories-listing">
+                        {% block sidebar_block %}
+                            {% get_category_list category %}
+                        {% endblock %}
+                    </nav>
+                </div>
             </div>
 
         </div>
 
-        <main role="main" class="col-md-9  ml-sm-auto col-lg-10 px-4">
+        <main class="col-md-9  ml-sm-auto col-lg-10 px-2">
             {% block body_block %}{% endblock %}
 
             <!-- FOOTER -->

@@ -4,13 +4,13 @@
         {% if c == current_category %}
         <li class="list-group-item">
             <a class="list-group-link" href="{% url 'rango:show_category' c.slug %}">
-                <span data-feather="archive"></span> {{ c.name }}
+                {{ c.name }}
             </a>
         </li>
         {% else %}
         <li class="list-group-item">
             <a class="list-group-link" href="{% url 'rango:show_category' c.slug %}">
-                <span data-feather="archive"></span>  {{ c.name }}
+                {{ c.name }}
             </a>
         </li>
         {% endif %}

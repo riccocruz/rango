@@ -1,33 +1,55 @@
 {% extends 'rango/base.html' %}
 {% load staticfiles %}
+{% load rango_template_tags %}
 
 {% block title_block %}
     Add a Category
 {% endblock %}
 
 {% block body_block %}
-<div class="jumbotron p-4">
+    <div class="jumbotron p-2">
+        <div class="container">
+            <h1 class="jumbotron-heading">Add a Category</h1>
+        </div>
+    </div>
     <div class="container">
-        <h1 class="jumbotron-heading">Add a Category</h1>
+        <div class="row">
+            <form role="form" id="category_form" method="post" action="{% url 'rango:add_category' %}">
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+                {% for field in form.visible_fields %}
+                    {{ field.errors }}
+                    {{ field.help_text }}<br/>
+                    {{ field }}<br/>
+                    <div class="p-2"></div>
+                {% endfor %}
+                <br/>
+                <button class="btn btn-primary" type="submit" name="submit">Create Category</button>
+                <div class="p-5"></div>
+            </form>
+        </div>
+
+        <div class="d-sm-block d-md-none">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCategoriesList"
+                    aria-expanded="false" aria-controls="collapseExample">
+                Button with data-target
+            </button>
+
+            <div class="collapse" id="collapseCategoriesList">
+                <div class="bd-search d-flex align-items-center">
+                    <input type="search" id="search-input" class="form-control ds-input"
+                           placeholder="Search Category"/>
+                </div>
+                <div class="categories-listing-container">
+                    <nav id="categories-listing">
+                        {% block sidebar_block %}
+                            {% get_category_list category %}
+                        {% endblock %}
+                    </nav>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<div class="container">
-    <div class="row">
-        <form role="form" id="category_form" method="post" action="{% url 'rango:add_category' %}">
-            {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
-            {% for field in form.visible_fields %}
-                {{ field.errors }}
-                {{ field.help_text }}<br />
-                {{ field }}<br />
-                <div class="p-2"></div>
-            {% endfor %}
-            <br />
-            <button class="btn btn-primary" type="submit" name="submit">Create Category</button>
-            <div class="p-5"></div>
-        </form>
-    </div>
-</div>
 {% endblock %}
