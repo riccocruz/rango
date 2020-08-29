@@ -45,3 +45,9 @@
 .list-group-flush {
     padding-inline-start: 0px;
 }
+
+.user-website {
+    font-size: 125%;
+    margin: 0 10px 10px 0;
+    font-weight: 400;
+}

@@ -15,19 +15,29 @@
                     <div class="col-4 p-4">
                         <img src="{{ MEDIA_URL }}{{ user_profile.picture }}"
                              alt="{{ selected_user.username }}'s profile image"
+                             width="300" height="300"
                              class="rounded img-fluid profile-img"/>
                     </div>
 
                 {% else %}
-                    <img src="https://lorempixel.com/300/300/people/" width="300" height="300" alt="Placeholder image"/>
+                    <img src="{{ MEDIA_URL }}/profile_images/default_user_profile.png" width="300" height="300"
+                         alt="Placeholder image"
+                         class="rounded img-fluid profile-img"/>
                 {% endif %}
-                <div class="col-8 jumbotron p-1">
-                    <h1 class="display-4">{{ selected_user.username }}</h1>
+                <div class="col-8 p-1">
+                    <h1 class="display-4">&nbsp;{{ selected_user.username }}</h1>
                     <hr class="my-4">
-                    <p class="lead">
-                        <span data-feather="link"></span> {{ user_profile.website }}
-                    </p>
 
+                    <div class="user-website">
+                        <a href="{{ user_profile.website }}">
+                            <span data-feather="link"></span>&nbsp;{{ user_profile.website }}
+                        </a>
+
+                    </div>
+
+                    <p>
+                        <span data-feather="info"></span>&nbsp;&nbsp;{{ user_profile.comment }}
+                    </p>
                 </div>
 
             </div>
