@@ -200,8 +200,9 @@ class ProfileView(View):
 
         user_profile = UserProfile.objects.get_or_create(user=user)[0]
         form = UserProfileForm({'website': user_profile.website,
-                                'picture': user_profile.picture})
-
+                                'picture': user_profile.picture,
+                                'comment': user_profile.comment})
+        print("i dunno", form, "\n\n\n")
         return (user, user_profile, form)
 
     @method_decorator(login_required)
@@ -214,7 +215,7 @@ class ProfileView(View):
         context_dict = {'user_profile': user_profile,
                         'selected_user': user,
                         'form': form}
-
+        print("asdasdfasdf", form)
         return render(request, 'rango/profile.html', context_dict)
 
     @method_decorator(login_required)

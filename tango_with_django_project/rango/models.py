@@ -46,9 +46,12 @@ class Page(models.Model):
 
 
 class UserProfile(models.Model):
+    COMMENT_MAX_LENGTH = 140
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     website = models.URLField(blank=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
+    comment = models.CharField(blank=True, max_length=COMMENT_MAX_LENGTH)
 
     def __str__(self):
         return self.user.username
