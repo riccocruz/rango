@@ -45,15 +45,32 @@
     </div>
 
     <div class="container">
-        <div class="row">
-            <div>
+        <div class="row mb-5">
+            <div class="col-4">
                 {% if selected_user == user %}
-                    <form method="post" action="." enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form.as_p }}
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                            data-target="#editProfileCollapse" aria-expanded="false"
+                            aria-controls="editProfileCollapse">
+                        Edit Profile
+                    </button>
+                    <div class="collapse" id="editProfileCollapse">
+                        <div class="form-group">
+                            <form method="post" action="." enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <p><label for="id_website">Website:</label> <input class="form-control" type="url"
+                                                                                   name="website"
+                                                                                   maxlength="200" id="id_website"></p>
+                                <p><label for="id_picture">Picture:</label> <input class="form-control-file" type="file"
+                                                                                   name="picture"
+                                                                                   accept="image/*" id="id_picture"></p>
+                                <p><label for="id_comment">Comment:</label> <input class="form-control" type="text"
+                                                                                   name="comment"
+                                                                                   maxlength="140" id="id_comment"></p>
 
-                        <input type="submit" value="Update"/>
-                    </form>
+                                <input type="submit" value="Update"/>
+                            </form>
+                        </div>
+                    </div>
                 {% else %}
                     <p>
                         <strong>Website: </strong>
@@ -61,7 +78,11 @@
                     </p>
                 {% endif %}
             </div>
-            <div class="nav-item"><a class="nav-link" href="{% url 'auth_password_change' %}">Change Password</a>
+            <div class="col-2">
+                <div class="nav-item"><a class="btn btn-secondary" href="{% url 'auth_password_change' %}">Change
+                    Password</a>
+                </div>
+
             </div>
         </div>
     </div>
