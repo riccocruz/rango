@@ -84,7 +84,7 @@ class ShowCategoryView(View):
         query = request.POST['query'].strip()
 
         if query:
-            context_dict['result_list'] = run_query(query)
+            # context_dict['result_list'] = run_query(query)
             context_dict['query'] = query
 
         return render(request, 'rango/category.html', context_dict)
@@ -273,7 +273,7 @@ class LikeCategoryView(View):
         except ValueError:
             return HttpResponse(-1)
 
-            # if user liked the category previously, don't show the like button
+        # if user liked the category previously, don't show the like button
         if user not in category.user_likes.all():
             category.likes = category.likes + 1
         category.save()

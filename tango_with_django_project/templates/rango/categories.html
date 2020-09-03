@@ -1,23 +1,19 @@
-<ul class="list-group-flush">
-{% if categories %}
-    {% for c in categories %}
-        {% if c == current_category %}
-        <li class="list-group-item">
-            <a class="list-group-link" href="{% url 'rango:show_category' c.slug %}">
-                {{ c.name }}
-            </a>
-        </li>
-        {% else %}
-        <li class="list-group-item">
-            <a class="list-group-link" href="{% url 'rango:show_category' c.slug %}">
-                {{ c.name }}
-            </a>
-        </li>
-        {% endif %}
-    {% endfor %}
-{% else %}
-    <li class="list-group-item">There are no categories present.</li>
-{% endif %}
-</ul>
+<div class="list-group-flush">
+    {% if categories %}
+        {% for c in categories %}
+            {% if c == current_category %}
+                <a class="list-group-item list-group-item-action active" href="{% url 'rango:show_category' c.slug %}">
+                    {{ c.name }}
+                </a>
+            {% else %}
+                <a class="list-group-item list-group-item-action" href="{% url 'rango:show_category' c.slug %}">
+                    {{ c.name }}
+                </a>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <li class="list-group-item">There are no categories present.</li>
+    {% endif %}
+</div>
 
 {# TODO: Add list of categories at the bottom of add category#}

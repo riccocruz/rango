@@ -6,7 +6,7 @@ TODO small things:
 5. DONE: Collapse the sidebar
 
 TODO big things:
-1. Edit models so that when you like a category, it stays liked/subscribed
+1. DONE: Edit models so that when you like a category, it stays liked/subscribed
 2. Include live chat for each category?
 3. Edit models to have website, comment, etc. on Profile page
     3a. display those on Profile page

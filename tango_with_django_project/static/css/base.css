@@ -51,3 +51,11 @@
     margin: 0 10px 10px 0;
     font-weight: 400;
 }
+
+.link-block {
+    position: relative;
+}
+
+.list-group-item {
+    color: #555;
+}
