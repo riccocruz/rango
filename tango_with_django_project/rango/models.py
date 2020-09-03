@@ -11,9 +11,9 @@ class Category(models.Model):
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
+    user_likes = models.ManyToManyField(User, related_name='user_likes', blank=True)
 
     def save(self, *args, **kwargs):
-        # Added for the testing chapter.
         if self.views < 0:
             self.views = 0
 

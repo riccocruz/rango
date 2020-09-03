@@ -44,7 +44,7 @@ class AboutView(View):
 
 
 class ShowCategoryView(View):
-    def create_context_dict(self, category_name_slug):
+    def create_context_dict(self, request, category_name_slug):
         """
         A helper method that was created to demonstarte the power of class-based views.
         You can reuse this method in the get() and post() methods!
@@ -52,24 +52,35 @@ class ShowCategoryView(View):
         context_dict = {}
 
         try:
+            user = User.objects.get(username=request.user)
             category = Category.objects.get(slug=category_name_slug)
             pages = Page.objects.filter(category=category).order_by('-views')
 
+            context_dict['user'] = user
             context_dict['pages'] = pages
             context_dict['category'] = category
+
+            # if user liked the category previously, don't show the like button
+            if user in category.user_likes.all():
+                context_dict['is_user_liked_category'] = True
+            else:
+                context_dict['is_user_liked_category'] = False
+
         except Category.DoesNotExist:
+            context_dict['user'] = None
             context_dict['pages'] = None
             context_dict['category'] = None
+            context_dict['is_user_liked_category'] = False
 
         return context_dict
 
     def get(self, request, category_name_slug):
-        context_dict = self.create_context_dict(category_name_slug)
+        context_dict = self.create_context_dict(request, category_name_slug)
         return render(request, 'rango/category.html', context_dict)
 
     @method_decorator(login_required)
     def post(self, request, category_name_slug):
-        context_dict = self.create_context_dict(category_name_slug)
+        context_dict = self.create_context_dict(request, category_name_slug)
         query = request.POST['query'].strip()
 
         if query:
@@ -253,16 +264,22 @@ class LikeCategoryView(View):
     @method_decorator(login_required)
     def get(self, request):
         category_id = request.GET['category_id']
-
+        username = request.user
         try:
             category = Category.objects.get(id=int(category_id))
+            user = User.objects.get(username=username)
         except Category.DoesNotExist:
             return HttpResponse(-1)
         except ValueError:
             return HttpResponse(-1)
 
-        category.likes = category.likes + 1
+            # if user liked the category previously, don't show the like button
+        if user not in category.user_likes.all():
+            category.likes = category.likes + 1
         category.save()
+        category.user_likes.add(user)
+
+        # print(category.user_likes.all(), user)
 
         return HttpResponse(category.likes)
 

@@ -1,10 +1,13 @@
 $(document).ready(function () {
     $('#like_btn').click(function () {
         var categoryIdVar;
-        categoryIdVar = $(this).attr('data-categoryid');
+        var userIdVar;
 
+        categoryIdVar = $(this).attr('data-categoryid');
+        userIdVar = $(this).attr('data-userid');
+        console.log(userIdVar);
         $.get('/rango/like_category/',
-            {'category_id': categoryIdVar},
+            {'category_id': categoryIdVar, 'user_id': userIdVar},
             function (data) {
                 $('#like_count').html(data);
                 $('#like_btn').hide();
