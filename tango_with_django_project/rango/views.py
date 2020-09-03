@@ -213,7 +213,6 @@ class ProfileView(View):
         form = UserProfileForm({'website': user_profile.website,
                                 'picture': user_profile.picture,
                                 'comment': user_profile.comment})
-        print("i dunno", form, "\n\n\n")
         return (user, user_profile, form)
 
     @method_decorator(login_required)
@@ -256,7 +255,7 @@ class ListProfilesView(View):
     @method_decorator(login_required)
     def get(self, request):
         profiles = UserProfile.objects.all()
-
+        print(profiles)
         return render(request, 'rango/list_profiles.html', {'user_profile_list': profiles})
 
 

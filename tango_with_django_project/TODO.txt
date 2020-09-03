@@ -10,3 +10,5 @@ TODO big things:
 2. Include live chat for each category?
 3. Edit models to have website, comment, etc. on Profile page
     3a. display those on Profile page
+4. Like a page
+5. Make each page a card or something with its own title, comment, link, views, likes
