@@ -17,12 +17,8 @@
             <div class="form-group">
                 <form method="post" action="{% url 'rango:register_profile' %}" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <p><label for="id_website">Website:</label> <input class="form-control" type="url" name="website"
-                                                                       maxlength="200" id="id_website"></p>
-                    <p><label for="id_picture">Picture:</label> <input class="form-control-file" type="file" name="picture"
-                                                                       accept="image/*" id="id_picture"></p>
-                    <p><label for="id_comment">Comment:</label> <input class="form-control"type="text" name="comment"
-                                                                       maxlength="140" id="id_comment"></p>
+                    {{ form.as_p }}
+
 
                     <input type="submit" class="btn btn-primary" value="Create Profile"/>
                 </form>

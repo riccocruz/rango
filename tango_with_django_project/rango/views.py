@@ -145,6 +145,7 @@ class AddPageView(View):
         if form.is_valid():
             page = form.save(commit=False)
             page.category = category
+            page.last_visit = timezone.now()
             page.views = 0
             page.save()
 

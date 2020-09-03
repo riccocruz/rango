@@ -17,9 +17,11 @@ class CategoryForm(forms.ModelForm):
 
 
 class PageForm(forms.ModelForm):
-    title = forms.CharField(max_length=Page.TITLE_MAX_LENGTH, help_text="Please enter the title of the page.")
-    url = forms.URLField(max_length=200, help_text="Please enter the URL of the page.")
+    title = forms.CharField(max_length=Page.TITLE_MAX_LENGTH, help_text="Page Title:",
+                            widget=forms.TextInput(attrs={'class': 'form-control'}))
+    url = forms.URLField(max_length=200, help_text="Page URL:", widget=forms.TextInput(attrs={'class': 'form-control'}))
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    last_visit = forms.DateTimeField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
         model = Page
@@ -45,6 +47,10 @@ class UserForm(forms.ModelForm):
 
 
 class UserProfileForm(forms.ModelForm):
+    website = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    picture = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
+    comment = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+
     class Meta:
         model = UserProfile
         fields = ('website', 'picture', 'comment')
