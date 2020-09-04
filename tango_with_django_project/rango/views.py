@@ -157,12 +157,6 @@ class AddPageView(View):
         return render(request, 'rango/add_page.html', context=context_dict)
 
 
-class RestrictedView(View):
-    @method_decorator(login_required)
-    def get(self, request):
-        return render(request, 'rango/restricted.html')
-
-
 class GotoView(View):
     def get(self, request):
         page_id = request.GET.get('page_id')
