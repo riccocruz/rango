@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import django_heroku
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
@@ -24,14 +25,11 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 # SECURITY WARNING: keep the secret key used in production secret!
 # This is modified for the deployment chapter of Tango with Django.
 # We don't care about this secret key; but you should! Keep your keys safe.
-key = None
-with open('secret.key', 'r') as f:
-    key = f.read().strip()
+SECRET_KEY = os.environ['SECRET_KEY']
 
-SECRET_KEY = key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = []
 
@@ -141,3 +139,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+# heroku config:set DJANGO_SECRET_KEY="kd_)39qdy!@vz!#u%zgx(oel6hp0)x1)uqamvmkzhe2g1czrj9"
