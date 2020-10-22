@@ -26,10 +26,15 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 # This is modified for the deployment chapter of Tango with Django.
 # We don't care about this secret key; but you should! Keep your keys safe.
 SECRET_KEY = os.environ['SECRET_KEY']
-
+# key = None
+# with open('secret.key', 'r') as f:
+#     key = f.read().strip()
+#
+# SECRET_KEY = key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+# DEBUG = True
 
 ALLOWED_HOSTS = []
 
