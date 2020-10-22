@@ -25,7 +25,7 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 # SECURITY WARNING: keep the secret key used in production secret!
 # This is modified for the deployment chapter of Tango with Django.
 # We don't care about this secret key; but you should! Keep your keys safe.
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 # key = None
 # with open('secret.key', 'r') as f:
 #     key = f.read().strip()
