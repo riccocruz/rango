@@ -13,7 +13,6 @@ django-heroku==0.3.1
 django-registration-redux==2.2
 filelock==3.0.12
 gunicorn==20.0.4
-idna @ file:///tmp/build/80754af9/idna_1593446292537/work
 importlib-metadata==1.6.0
 Pillow==5.4.1
 psycopg2==2.8.6
@@ -23,7 +22,6 @@ PyQt5==5.12.3
 PyQtWebEngine==5.12.1
 PySocks==1.7.1
 pytz==2020.1
-requests @ file:///tmp/build/80754af9/requests_1592841827918/work
 six==1.15.0
 urllib3==1.25.9
 virtualenv==20.0.21
