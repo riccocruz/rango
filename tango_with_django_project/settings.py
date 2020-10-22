@@ -38,6 +38,20 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["https://riccoveigh-rango.herokuapp.com/"]
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+       'root': {},
+#
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+}
+
 REGISTRATION_OPEN = True
 REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = 'rango:index'
