@@ -33,7 +33,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 # SECRET_KEY = key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 # DEBUG = True
 
 ALLOWED_HOSTS = ["https://riccoveigh-rango.herokuapp.com/"]
